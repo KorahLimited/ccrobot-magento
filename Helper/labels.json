@@ -1,0 +1,34 @@
+{
+    "fr": {
+        "ChatNow": "Label I",
+        "chatTitle": "Label II",
+        "goToInput": "Label III",
+        "MinChat": "Label IV",
+        "MaxChat": "Label V",
+        "RestoreChat": "Label VI",
+        "CloseChat": "Label VII",
+        "confirmationEnd": "Label VIII",
+        "confirmationMinimize": "Label X",
+        "confirmationCancel": "Confirmation dialog \"Cancel\" text",
+        "confirmationCancelTitle": "Confirmation dialog \"Cancel\" button accessibility label",
+        "modalTitle": "Label XIV",
+        "noticeMsg": "Label XV",
+        "ccrChatFrameTitle": "Label XVI"
+    },
+    "en": {
+        "ChatNow": "Main widget button accessibility label",
+        "chatTitle": "Chat window title",
+        "goToInput": "\"Skip to text input\" accessibility button label",
+        "MinChat": "\"Minimize\" button accessibility label",
+        "MaxChat": "\"Maximize\" button accessibility label",
+        "RestoreChat": "\"Restore Size\" button accessibility label",
+        "CloseChat": "\"Close\" button accessibility label",
+        "confirmationEnd": "Confirmation dialog \"End Chat\" text",
+        "confirmationMinimize": "Confirmation dialog \"Minimize\" text",
+        "confirmationCancel": "Confirmation dialog \"Cancel\" text",
+        "confirmationCancelTitle": "Confirmation dialog \"Cancel\" button accessibility label",
+        "modalTitle": "Widget HTML title for accessibility",
+        "noticeMsg": "Pop-up notification text",
+        "ccrChatFrameTitle": "Widget chat window HTML title"
+    }
+}

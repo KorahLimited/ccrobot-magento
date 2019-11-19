@@ -1,0 +1,98 @@
+<script type="text/javascript">
+	(function(){
+		require([
+			'jquery',
+			'Magento_Customer/js/customer-data'
+		], function($, customerData) {
+			ccrInit(customerData);
+		});
+
+		var Utils = {};
+		Utils.scriptLoader = (function(){
+			var _instance = {};
+			var _head;
+			var _tail;
+
+			_instance.queue = function(src){
+				var script = document.createElement("script");
+				script.setAttribute("src", src);
+				script.setAttribute("type", "text/javascript");
+				if(!_head){
+					_head = script;
+					_tail = script;
+				} else {
+					_tail.onload = function(){
+						document.head.appendChild(script);
+					};
+					_tail = script;
+				}
+				return _instance;
+			};
+			_instance.load = function(){
+				document.head.appendChild(_head);
+			};
+			_instance.clear = function(){
+				_head = null;
+				_tail = null;
+			};
+			return _instance;
+		})();
+
+
+		function ccrInit(customerData){
+			
+			var subscription = customerData.get('ccrobot-user').subscribe(function(customer){
+				subscription.dispose();
+
+				window.ccrobot_instance = {
+					identity: {
+						firstName: customer.firstName,
+						lastName: customer.lastName,
+						phone: customer.phone,
+						email: customer.email
+					}
+				};
+				if(customer.isNewInstance){
+					// console.log("REQUEST LOGOUT");
+					Utils.scriptLoader
+						.queue("<?php echo $block->getViewFileUrl("Korah_CcRobot::js/ccr-auto-logout.js"); ?>")
+						.queue("<?php echo $block->getViewFileUrl("Korah_CcRobot::js/ccRwidget.js"); ?>")
+						.load();
+					customer.isNewInstance = false;
+					customerData.set('ccrobot-user', customer);
+				} else {
+					// console.log("SESSION PERSIST");
+					Utils.scriptLoader
+						.queue("<?php echo $block->getViewFileUrl("Korah_CcRobot::js/ccRwidget.js"); ?>")
+						.load();
+				}
+			});
+		}
+	})();
+</script>
+<?php if($block->getConfig("interface/isprivateinfoallow")): ?>
+<script src="<?php echo $block->getViewFileUrl("Korah_CcRobot::js/ccr-auto-login.js"); ?>" type="text/javascript"></script>
+<?php endif; ?>
+<link href="<?php echo $block->getViewFileUrl("Korah_CcRobot::css/ccRwidget.css"); ?>" rel="stylesheet"/>
+
+<iframe id="korahCcrChatContainer"
+	title="ccRobot"
+	style="border-radius: <?php echo $block->getConfig("appearance/btnsize") / 6; ?>px;"
+	data-hostUrl="<?php echo $block->getConfig("connection/hosturl"); ?>"
+	data-ccrChatPhpUrl = "ccrChat.php"
+	data-orgId="<?php echo $block->getConfig("connection/orgid"); ?>"
+	data-lang="<?php echo $block->getConfig("appearance/lang"); ?>"
+	data-btnWidth="<?php echo $block->getConfig("appearance/btnsize"); ?>px"
+	data-btnHeight="<?php echo $block->getConfig("appearance/btnsize"); ?>px"
+	data-showMsgTimeout="<?php echo $block->getConfig("appearance/showmsgtimeout"); ?>"
+	data-hideMsgTimeout="<?php echo $block->getConfig("appearance/hidemsgtimeout"); ?>"
+	data-isShowMinBtn="<?php echo $block->getConfig("interface/isshowminbtn") ? "true" : "false"; ?>"
+	data-isShowResizeBtn="<?php echo $block->getConfig("interface/isshowresizebtn") ? "true" : "false"; ?>"
+	data-isShowCloseBtn="<?php echo $block->getConfig("interface/isshowclosebtn") ? "true" : "false"; ?>"
+	data-isShowConfirmationOnClose="<?php echo $block->getConfig("interface/isshowconfirmationonclose") ? "true" : "false"; ?>"
+	data-isClntAuthRq="false"
+	data-isPrivateInfoAllowed="<?php echo $block->getConfig("interface/isprivateinfoallow") ? "true" : "false"; ?>"
+	data-isCheckCcrAvailability="<?php echo $block->getConfig("connection/ischeckccravailability") ? "true" : "false"; ?>"
+	data-baseUrl="<?php echo $block->getViewFileUrl("") . '/' . $block->getModuleName(); ?>"
+	src="about:blank"
+></iframe>

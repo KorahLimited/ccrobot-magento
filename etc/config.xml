@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+ <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ccrobot>
+            <module>
+                <enabled>0</enabled>
+            </module>
+            <connection>
+                <orgid>14C20537-F311-B294-662C-C144D90A9444</orgid>
+                <hosturl>https://black.korahlimited.com/oprCns/</hosturl>
+                <ischeckccravailability>0</ischeckccravailability>
+            </connection>
+            <appearance>
+                <lang>default</lang>
+                <btnsize>75</btnsize>
+                <showmsgtimeout>3000</showmsgtimeout>
+                <hidemsgtimeout>5000</hidemsgtimeout>
+            </appearance>
+            <interface>
+                <isshowminbtn>1</isshowminbtn>
+                <isshowresizebtn>1</isshowresizebtn>
+                <isshowclosebtn>1</isshowclosebtn>
+                <isshowconfirmationonclose>1</isshowconfirmationonclose>
+                <isprivateinfoallow>1</isprivateinfoallow>
+            </interface>
+        </ccrobot>
+    </default>
+</config>

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="korah" translate="label" sortOrder="500">
+            <label>Korah</label>
+        </tab>
+        <section id="ccrobot" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>ccRobot</label>
+            <tab>korah</tab>
+            <resource>Korah_CcRobot::ccrobot_config</resource>
+            <group id="module" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="connection" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Connection Settings</label>
+                <field id="orgid" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Organization ID</label>
+                    <comment>A 32-digit alphanumeric key provided by Korah Limited.</comment>
+                </field>
+                <field id="hosturl" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Host URL</label>
+                    <validate>validate-url</validate>
+                    <comment>The base URL of the chat service, typically ending in ".../oprCns/".</comment>
+                </field>
+                <field id="ischeckccravailability" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Check Service Availability</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>The widget will not be rendered if the service is unavailable.</comment>
+                </field>
+            </group>
+            <group id="appearance" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Appearance</label>
+                <field id="lang" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Language</label>
+                    <source_model>Korah\CcRobot\Model\Config\Source\Locale</source_model>
+                    <comment>The language of the chat bot.</comment>
+                </field>
+                <field id="btnsize" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Button Size</label>
+                    <validate>validate-number</validate>
+                    <comment>The height and width of the widget in pixels.</comment>
+                </field>
+                <field id="showmsgtimeout" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Notification Delay</label>
+                    <validate>validate-number</validate>
+                    <comment>Time to wait in milliseconds before displaying the alert message.</comment>
+                </field>
+                <field id="hidemsgtimeout" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Notification Duration</label>
+                    <validate>validate-number</validate>
+                    <comment>Duration in milliseconds to show the alert message.</comment>
+                </field>
+            </group>
+            <group id="interface" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Interface Options</label>
+                <field id="isshowminbtn" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Show Minimize Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Include a button to minimize the chat window.</comment>
+                </field>
+                <field id="isshowresizebtn" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Show Resize Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Include a button to maximize/restore the chat window.</comment>
+                </field>
+                <field id="isshowclosebtn" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Show Close Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Include a button to end the chat.</comment>
+                </field>
+                <field id="isshowconfirmationonclose" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Provide Confirmation on Close</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When users click the close button, they will be presented with a confirmation before ending the chat.</comment>
+                </field>
+                <field id="isprivateinfoallow" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Require User Identification</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When a user tries to start a new chat session, they will be prompted for their name and email.</comment>
+                </field>
+            </group>
+            <group id="resources" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Resources</label>
+                <field id="strings" translate="label" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Edit Text Labels For</label>
+                    <backend_model>Korah\CcRobot\Model\Config\Backend\CcrStrings</backend_model>
+                    <frontend_model>Korah\CcRobot\Model\Config\Element\CcrStrings</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

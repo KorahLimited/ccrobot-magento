@@ -1,0 +1,69 @@
+<?php
+$rows = array();
+foreach ($block->getArrayRows() as $rowId => $row)
+{
+    $locale = preg_match('/:([^:]+)$/', $rowId, $matches) ? $matches[1] : "en";
+    if(!isset($rows[$locale]))
+    {
+        $rows[$locale] = array();
+    }
+    $rows[$locale][$rowId] = $row;
+}
+?>
+
+<select id="ccrobot_resource_lang" class="select admin__control-select" style="margin-bottom: 22px">
+    <?php foreach($block->locale() as $row): ?>
+        <option value="<?php echo $row["value"]; ?>"><?php echo $row["label"]; ?></option>
+    <?php endforeach; ?>
+</select>
+<div class="design_theme_ua_regexp">
+    <div class="admin__control-table-wrapper">
+        <table class="admin__control-table">
+            <thead>
+            <tr>
+                <?php foreach ($block->getColumns() as $columnName => $column): ?>
+                    <th><?php echo $column['label'] ?></th>
+                <?php endforeach; ?>
+            </tr>
+            </thead>
+
+            <?php foreach($rows as $locale => $resources): ?>
+            <tbody id="ccrobot_<?php echo $locale; ?>_resources" style="display:none">
+                <?php foreach($resources as $rowId => $row): ?>
+                    <tr>
+                        <td style="vertical-align: middle">
+                            <span style="font-size: 14px"><?php echo $block->labels()[$locale][$row["key"]]; ?></span>
+                            <input type="hidden" name="groups[resources][fields][strings][value][<?php echo $rowId; ?>][key]" value="<?php echo $row["key"]; ?>">
+                        </td>
+                        <td>
+                            <input type="text" name="groups[resources][fields][strings][value][<?php echo $rowId; ?>][value]" value="<?php echo $row["value"]; ?>" class="required-entry">
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <?php endforeach; ?>
+        </table>
+        <script>
+            (function(){
+                function ccr_toggle_visibility(e){
+                    <?php echo json_encode(array_keys($rows)); ?>.forEach(function(i){
+                        if(i != e.target.value){
+                            document.getElementById("ccrobot_" + i + "_resources").style.display = "none";
+                        }
+                    });
+                    document.getElementById("ccrobot_" + e.target.value + "_resources").style.display = "table-row-group";
+                }
+                document.onreadystatechange = function () {
+                    if (document.readyState == "interactive") {
+                        var select = document.getElementById("ccrobot_resource_lang");
+                        select.addEventListener("input", ccr_toggle_visibility);
+                        select.selectedIndex = 0;
+                        var event = document.createEvent('Event');
+                        event.initEvent('input', true, true);
+                        select.dispatchEvent(event);
+                    }
+                }
+            })();
+        </script>
+    </div>
+</div>
