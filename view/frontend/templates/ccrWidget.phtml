@@ -4,7 +4,7 @@
 			'jquery',
 			'Magento_Customer/js/customer-data'
 		], function($, customerData) {
-			ccrInit(customerData);
+			ccrInit($, customerData);
 		});
 
 		var Utils = {};
@@ -39,7 +39,7 @@
 		})();
 
 
-		function ccrInit(customerData){
+		function ccrInit($, customerData){
 			
 			var subscription = customerData.get('ccrobot-user').subscribe(function(customer){
 				subscription.dispose();
