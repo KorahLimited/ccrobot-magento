@@ -68,8 +68,9 @@
 				}
 			});
 			
-			if(!$.cookieStorage.get('section_data_ids')) {
-				customerData.reload("ccrobot-user");
+			if(!$.cookieStorage.get('section_data_ids') && $.namespaceStorages['mage-cache-storage-section-invalidation']) {
+				// force load from server on first visit
+				$.namespaceStorages['mage-cache-storage-section-invalidation'].localStorage.set("ccrobot-user", true);
 			}
 		}
 	})();
