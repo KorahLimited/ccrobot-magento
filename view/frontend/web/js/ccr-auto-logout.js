@@ -1,13 +1,14 @@
 // overload the setAttribute property of the user identity form to immediately submit a logout request
 (function(){
-    if (document.readyState === "complete" || document.readyState === "loaded") {
+    if (document.readyState === "complete" || document.readyState === "loaded" || document.readyState === "interactive") {
+		localStorage.setItem(document.getElementById("korahCcrChatContainer").dataset.orgid+".korahlimitedOpen", "false");
 		bindActionMutator();
 	} else {
 		document.addEventListener("DOMContentLoaded", function(event) {
+			localStorage.setItem(document.getElementById("korahCcrChatContainer").dataset.orgid+".korahlimitedOpen", "false");
 			bindActionMutator();
 		});
 	}
-	localStorage.setItem(document.getElementById("korahCcrChatContainer").dataset.orgid+".korahlimitedOpen", "false");
 	
 	function bindActionMutator() {
 		var rootIframe = document.getElementById("korahCcrChatContainer");

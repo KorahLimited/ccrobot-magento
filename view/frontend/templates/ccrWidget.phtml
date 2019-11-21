@@ -67,6 +67,10 @@
 						.load();
 				}
 			});
+			
+			if(!$.cookieStorage.get('section_data_ids')) {
+				customerData.reload("ccrobot-user");
+			}
 		}
 	})();
 </script>

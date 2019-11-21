@@ -1,5 +1,5 @@
 (function(){
-    if (document.readyState === "complete" || document.readyState === "loaded") {
+    if (document.readyState === "complete" || document.readyState === "loaded" || document.readyState === "interactive") {
 		bindIdentitySetter();
 	} else {
 		document.addEventListener("DOMContentLoaded", function(event) {
