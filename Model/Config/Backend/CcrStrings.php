@@ -64,5 +64,3 @@ class CcrStrings extends ArraySerialized
         $this->setValue($obj);
     }
 }
-
-?>

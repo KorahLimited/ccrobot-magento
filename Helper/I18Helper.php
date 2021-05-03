@@ -68,5 +68,3 @@ class I18Helper extends AbstractHelper
         return $contents;
     }
 }
-
-?>

@@ -35,5 +35,3 @@ class Customer implements SectionSourceInterface
         return $result;
     }
 }
-
-?>

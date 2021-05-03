@@ -48,7 +48,3 @@ class CcrStrings extends AbstractFieldArray
         $this->addColumn('value', ['label' => __('Value'), 'class' => 'required-entry']);
     }
 }
-
-
-
-?>

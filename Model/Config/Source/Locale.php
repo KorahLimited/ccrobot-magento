@@ -13,5 +13,3 @@ class Locale implements \Magento\Framework\Option\ArrayInterface
         ];
     }
 }
-
-?>
